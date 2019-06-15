@@ -2,7 +2,15 @@
  * Import LitElement base class, html helper function,
  * and TypeScript decorators
  **/
-import { css, LitElement, html, customElement, property } from 'lit-element';
+import {
+  css,
+  LitElement,
+  html,
+  customElement,
+  property,
+  TemplateResult,
+  CSSResult,
+} from 'lit-element';
 
 /**
  * Use the customElement decorator to define your class as
@@ -10,7 +18,7 @@ import { css, LitElement, html, customElement, property } from 'lit-element';
  */
 @customElement('tyapk-modal')
 export class TyapkModalElement extends LitElement {
-  static get styles() {
+  static get styles(): CSSResult {
     return css`
       .overlay {
         top: 0;
@@ -128,27 +136,28 @@ export class TyapkModalElement extends LitElement {
   @property()
   header = '';
 
-  // @Prop({
-  //   mutable: true
-  // })
   @property()
   show = false;
-  // @Event() private close: EventEmitter;
 
-  handleClick() {
-    this.show = false;
-    // this.close.emit('ok');
+  private _close(result: string): void {
+    // Fire a custom event for others to listen to
+    this.dispatchEvent(new CustomEvent('close', { detail: result }));
   }
 
-  closeModal(result: string) {
+  handleClick(): void {
     this.show = false;
-    // this.close.emit(result);
+    this._close('ok');
+  }
+
+  closeModal(result: string): void {
+    this.show = false;
+    this._close(result);
   }
 
   /**
    * Implement `render` to define a template for your element.
    */
-  render() {
+  render(): TemplateResult {
     /**
      * Use JavaScript expressions to include property values in
      * the element template.
@@ -186,9 +195,7 @@ export class TyapkModalElement extends LitElement {
             </div>
             <div class="overlay"></div>
           `
-        : html`
-            <span></span>
-          `}
+        : ''}
     `;
   }
 }
