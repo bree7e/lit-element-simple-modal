@@ -139,9 +139,9 @@ export class TyapkModalElement extends LitElement {
   @property()
   show = false;
 
-  private _close(result: string): void {
+  private _close(detail: string): void {
     // Fire a custom event for others to listen to
-    this.dispatchEvent(new CustomEvent('close', { detail: result }));
+    this.dispatchEvent(new CustomEvent('close', { detail }));
   }
 
   handleClick(): void {
