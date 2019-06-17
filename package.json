@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "css-loader": "^2.1.1",
-    "polymer-cli": "latest",
     "ts-loader": "^5.3.3",
     "typescript": "latest",
     "webpack": "^4.29.6",

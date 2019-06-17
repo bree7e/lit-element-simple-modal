@@ -1,1 +1,1 @@
-import './src/components/simple-modal-element.ts'
+import './src/components/simple-modal.element.ts'

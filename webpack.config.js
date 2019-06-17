@@ -14,11 +14,6 @@ module.exports = {
   module: {
     rules: [{ test: /\.ts/, use: 'ts-loader' }],
   },
-  watch: true,
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000,
-  },
   devServer: {
     open: true,
     hot: true
